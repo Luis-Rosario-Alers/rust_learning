@@ -2,6 +2,7 @@ mod loops;
 mod temperature_converter;
 mod fibonacci;
 mod ownership;
+mod problems;
 
 use std::io;
 use std::cmp::Ordering;

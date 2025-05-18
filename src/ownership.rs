@@ -82,6 +82,47 @@ fn test_multiple_mutable_references() {
     // at compile time.
     let f1 = &mut string1;
     let f2 = &mut string1;
+
+    // meanwhile, this will not error because the mutable references
+    // are in different scopes
+    let f3 = &mut string1;
+    {
+        let f4 = &mut string1;
+    }
+    // essentially, they CANNOT be in the same scope
+    // also, you can't have mutable and immutable references at the same time.
+    // this will error in compile time.
+    let f5 = &string1;
+    let f6 = &string1;
+    let f7 = &mut string1;
+    // The reason for this is to make sure the value doesn't change
+    // when an immutable reference is being used.
+    // Otherwise, immutable references could point to a different value, which would render them
+    // essentially pointless in terms of ensuring the immutability of the referenced value.
     
+    // Furthermore, a reference's scope starts from where it was created to its last usage
+    // consider the following
+    let mut s = String::from("hola");
+    let f8 = &s;
+    let f9 = &s;
+    println!("{f8} is also {f9}"); // the lifetime of reference effectively ends here.
+    
+    let f10 = &mut s; // you are then able to use a mutable reference.
+    println!("{f10}");
 }
 
+fn test_dangling_reference() {
+    // this will try to store a dangling reference from the function
+    let dangling_reference = dummy_dangling_reference();
+}
+
+fn dummy_dangling_reference() -> &String {
+    // allocate memory to the heap
+    let a: String = String::from("hola");
+    // returns a reference, but because this reference's value is going to be deallocated,
+    // when it goes out of scope, it will trigger a compilation error.
+    &a
+    // to stop this compilation error, you have to return the string itself as it will
+    // transfer ownership.
+    // a
+}

@@ -126,3 +126,4 @@ fn dummy_dangling_reference() -> &String {
     // transfer ownership.
     // a
 }
+

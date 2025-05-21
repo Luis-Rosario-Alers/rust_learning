@@ -1,7 +1,6 @@
-mod loops;
 mod temperature_converter;
 mod fibonacci;
-mod ownership;
+mod chapter_4;
 mod problems;
 
 use std::io;

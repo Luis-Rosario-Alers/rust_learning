@@ -1,5 +1,4 @@
 
-
 pub fn convert_temperature(temp: &mut f64, temp_type: bool) -> () {
     // F to C
     if temp_type {

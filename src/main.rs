@@ -56,7 +56,7 @@ fn main() {
             }
         }
     }
-    println!("The game isnt over yet...");
+    println!("The game isn't over yet...");
     let last_number: u32 = rand::thread_rng().gen_range(1..=10);
     println!("Go ahead...\nGuess the last number.");
     let mut user_guess = String::new();

@@ -81,3 +81,23 @@ fn find_first_word_2(s: &str) -> &str {
 // part of the binary.
 // This allows us to pass in their references instead
 // of having to write the full string slice syntax.
+
+// Moving on, you can use the string slice syntax on other structures
+// like collections.
+fn test_array_slicing() {
+    let array: [i32; 5] = [1, 2, 3, 4, 5];
+
+    let slice: &[i32] = &array[1..3];
+
+    assert_eq!(slice, &[2, 3]);
+}
+
+// this function is using the same slicing syntax to get
+// the 2nd and 3rd element from this array.
+// As before, the slice is just a reference to a part of an existing
+// piece of data.
+
+
+// So far we have learned the concepts of borrowing, ownership, and slices
+// to make sure that my programs are memory safe.
+

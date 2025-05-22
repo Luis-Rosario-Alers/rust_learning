@@ -124,6 +124,6 @@ fn dummy_dangling_reference() -> &String {
     &a
     // to stop this compilation error, you have to return the string itself as it will
     // transfer ownership.
-    // a
+    a
 }
 

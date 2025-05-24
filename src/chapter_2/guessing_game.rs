@@ -1,32 +1,4 @@
-mod temperature_converter;
-mod fibonacci;
-mod chapter_4;
-mod problems;
-
-use std::io;
-use std::cmp::Ordering;
-use rand::Rng;
 fn main() {
-    // test loops
-    loops::test_loops();
-    
-    // temp converter
-    let mut _temp_f: f64 = 50.0;
-    let mut _temp_c: f64 = 20.0;
-    let temp_type: bool = false;
-    temperature_converter::convert_temperature(&mut _temp_c, temp_type);
-    println!("{}", _temp_c);
-    
-    // fibonacci number
-    let fib_num = fibonacci::fibonacci(4);
-    println!("fibonacci: {fib_num}");
-    
-    // ownership rules tests
-    // ownership::test_double_free_error();
-    ownership::test_clone();
-    ownership::test_stack_copy();
-    
-    // guessing game
     println!("Guess the number!");
     let secret_number = rand::thread_rng().gen_range(1..=10);
     

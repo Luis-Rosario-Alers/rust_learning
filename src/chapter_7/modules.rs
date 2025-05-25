@@ -515,3 +515,41 @@ fn function2() -> IoResult<()> {
 //   --snip--
 }
 
+// re-exporting allows you to hide internal structures of your library
+
+// its like going "hey re-export this module as if it was defined in the root module"
+
+// Example of re-exporting
+// root module is land
+mod garden {
+    pub mod vegetables {
+        pub struct Asparagus;
+    }
+}
+
+pub use garden::vegetables::Asparagus; // Re-exporting Asparagus
+
+// use Asparagus like this ---> land::Asparagus
+
+// Nested paths
+
+// instead of this
+use std::cmp::Ordering;
+use std::io;
+// you can do this
+use std::{cmp::Ordering, io};
+
+// Another example
+use std::io;
+use std::io::Write;
+// can be simplified to
+use std::io::{self, io::Write};
+// This is useful for keeping your `use` statements clean and organized.
+
+// Glob operator
+use std::io::*;
+// This will bring all public items from the `io` module into scope.
+// not generally recommended though because of the ambiguity it can create for
+// where a function is defined.
+// It's better to be explicit about what you're bringing into scope.
+

@@ -8,7 +8,7 @@ pub enum MedianResult {
 }
 
 
-pub fn find_median(integers_list: [i32; 6]) -> MedianResult {
+pub fn find_median(integers_list: &[i32; 6]) -> MedianResult {
     let integers_vector: Vec<&i32> = integers_list.iter().collect();
     if integers_vector.len() % 2 == 1 {
         let median_index = ((integers_vector.len() / 2) as f64).ceil() as usize;
@@ -24,7 +24,20 @@ pub fn find_median(integers_list: [i32; 6]) -> MedianResult {
     }
 }
 
+use std::collections::HashMap;
 
-pub fn _find_mode() {
+pub fn _find_mode(integers_list: &[i32; 6]) -> i32 {
+    let mut hash_map: HashMap<i32, i32> = HashMap::new();
 
+    for num in integers_list {
+        let mut count = hash_map.entry(*num).or_insert(0);
+        *count += 1;
+    }
+    let mut mode = 0;
+    for (key, value) in hash_map {
+        if value > mode {
+            mode = key;
+        }
+    }
+    mode
 }

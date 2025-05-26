@@ -41,3 +41,38 @@ pub fn _find_mode(integers_list: &[i32; 6]) -> i32 {
     }
     mode
 }
+
+pub fn pig_latin_conversion(strings: &mut Vec<String>) -> &mut Vec<String> {
+    let vowels = ['a', 'e', 'i', 'o', 'u'];
+    for word in strings.iter_mut() {
+        if word.starts_with(vowels) {
+            word.push_str("yay");
+        } else if word.is_ascii() {
+            let mut consonants = String::new();
+            let mut punctuation = String::new();
+            let mut first_vowel = false;
+            word.retain(|c| {
+                if !vowels.contains(&c) {
+                    if c.is_ascii_punctuation() {
+                        punctuation.push(c);
+                        false
+                    } else if !first_vowel {
+                        consonants.push(c);
+                        false
+                    } else {
+                        first_vowel
+                    }
+                } else {
+                    first_vowel = true;
+                    first_vowel
+                }
+            });
+            word.push_str(&consonants);
+            word.push_str("ay");
+            word.push_str(&punctuation)
+        } else {
+            println!("Ngl I dont think {} is in english", &word);
+        }
+    }
+    strings
+}

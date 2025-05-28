@@ -1,6 +1,9 @@
 mod chapter_8;
-use crate::chapter_8::{find_median, pig_latin_conversion, _find_mode, MedianResult};
-use std::io::{self};
+use crate::chapter_8::{find_median, 
+    pig_latin_conversion,
+    _find_mode,
+    MedianResult, handle_command};
+use std::{collections::HashMap, io::{self, Write}};
 fn main() {
     let integers_list: [i32; 6] = [1, 1, 5, 6, 6, 7];
 
@@ -28,4 +31,23 @@ fn main() {
     let final_sentence = pig_latin_words.join(" ");
 
     println!("Your sentence converted to pig latin is {}", final_sentence);
+
+    println!("Welcome the department program...");
+    let mut company_hashtable: HashMap<String, Vec<String>> = HashMap::new();
+    loop {
+        print!("department (:> ");
+        std::io::stdout().flush().unwrap();
+        let mut user_input = String::new();
+
+        io::stdin()
+        .read_line(&mut user_input)
+        .expect("Bad command.");
+        
+        if user_input == "quit" || user_input == "q" {
+            break;
+        }
+
+        handle_command(user_input, &mut company_hashtable);
+    }
+
 }
